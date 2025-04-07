@@ -8,50 +8,43 @@ st.title("🗣️ Text-to-Speech Converter using gTTS")
 # App Description
 st.markdown("""
 ## 🎯 Purpose of this App
-This simple and efficient Text-to-Speech (TTS) tool uses Google's `gTTS` (Google Text-to-Speech) API to convert written text into spoken words.
+This fun and efficient Text-to-Speech (TTS) tool uses Google's `gTTS` (Google Text-to-Speech) API to convert written text into spoken words.
 
-> 💡 *“Speech is power: speech is to persuade, to convert, to compel.” – Ralph Waldo Emerson*
+> 💡 *“Words mean more than what is set down on paper. It takes the human voice to infuse them with deeper meaning.” – Maya Angelou*
 
-Just enter your text in the box below, choose a language, and click play to hear it spoken out loud!
+Just enter your text, select a **voice character**, and press play!
 
 ---
 """)
 
 # Input Section
-st.header("✍️ Enter Your Text Below")
+st.header("✍️ Enter Your Text")
 text = st.text_input("📌 Type something you'd like to convert into speech:", "")
 
-# Language Selection
-st.header("🗣️ Change Voice Language")
-language_options = {
-    "English (US)": "en",
-    "English (UK)": "en-uk",
-    "Hindi": "hi",
-    "French": "fr",
-    "Spanish": "es",
-    "German": "de",
-    "Italian": "it",
-    "Japanese": "ja",
-    "Korean": "ko",
-    "Chinese": "zh-cn",
-    "Russian": "ru"
+# Voice Character Selection (for visual/fun purpose)
+st.header("🎭 Choose a Voice Character")
+
+character_styles = {
+    "🤖 Robot Voice": "en",
+    "🎩 British Gentleman": "en",
+    "🎙️ Movie Narrator": "en",
+    "😆 Cartoon Character": "en",
+    "👩‍🏫 School Teacher": "en",
+    "🧙 Wizard": "en"
 }
-language_choice = st.selectbox("🌐 Choose a language/accent:", list(language_options.keys()))
-language_code = language_options[language_choice]
+character_choice = st.selectbox("🎧 Select a character:", list(character_styles.keys()))
+selected_lang = character_styles[character_choice]
 
 # TTS Processing
 if text:
-    tts = gTTS(text=text, lang=language_code, slow=False)
+    tts = gTTS(text=text, lang=selected_lang, slow=False)
     tts.save("output.mp3")
 
     # Play Audio
-    st.success("✅ Conversion Successful! Click play to hear the audio.")
+    st.success(f"✅ Here's how your text sounds as a {character_choice}!")
     audio_file = open("output.mp3", "rb")
     st.audio(audio_file.read(), format="audio/mp3")
 
 # Footer
-st.markdown("""
----
-Made with ❤️ using [gTTS](https://pypi.org/project/gTTS/) and [Streamlit](https://streamlit.io/)
-""")
+st.mark
 

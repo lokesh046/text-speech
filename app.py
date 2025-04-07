@@ -21,7 +21,7 @@ text = st.text_input("Enter your text here...", value="Hello! Welcome to your ge
 if text:
     try:
         # Load text-to-speech pipeline
-pipe = pipeline("text-to-speech", model="suno/bark-small", device="cuda")
+pipe = pipeline("text-to-speech", model="suno/bark-small")  # no device param needed
 
         output = pipe(text)
         st.audio(output["audio"], sample_rate=output["sampling_rate"])

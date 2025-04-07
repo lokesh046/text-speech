@@ -21,7 +21,7 @@ Masked Language Modeling, Sentiment Analysis, Feature Extraction and Question An
 st.subheader("Converting text to speech")
 
 text = st.text_input("enter your text here...", value="")
-pipe = pipeline("text-to-speech", model="suno/bark-small", device="cpu")
+pipe = pipeline("text-to-speech", model="suno/bark-small", device="cuda")
 
 print(pipe)
 output = pipe(text)

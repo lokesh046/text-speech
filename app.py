@@ -17,7 +17,7 @@ st.subheader("🔊 Converting Text to Speech")
 text = st.text_input("Enter your text here...", value="Hello! Welcome to your generative AI tool.")
 
 # Hugging Face auth token via environment variable (safe practice)
-hf_token = os.getenv(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)
+hf_token = os.getenv('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')
 
 if text:
     try:

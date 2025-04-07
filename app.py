@@ -12,7 +12,7 @@ This simple and efficient Text-to-Speech (TTS) tool uses Google's `gTTS` (Google
 
 > 💡 *“Speech is power: speech is to persuade, to convert, to compel.” – Ralph Waldo Emerson*
 
-Just enter your text in the box below and click play to hear it spoken out loud!
+Just enter your text in the box below, choose a language, and click play to hear it spoken out loud!
 
 ---
 """)
@@ -21,9 +21,27 @@ Just enter your text in the box below and click play to hear it spoken out loud!
 st.header("✍️ Enter Your Text Below")
 text = st.text_input("📌 Type something you'd like to convert into speech:", "")
 
+# Language Selection
+st.header("🗣️ Change Voice Language")
+language_options = {
+    "English (US)": "en",
+    "English (UK)": "en-uk",
+    "Hindi": "hi",
+    "French": "fr",
+    "Spanish": "es",
+    "German": "de",
+    "Italian": "it",
+    "Japanese": "ja",
+    "Korean": "ko",
+    "Chinese": "zh-cn",
+    "Russian": "ru"
+}
+language_choice = st.selectbox("🌐 Choose a language/accent:", list(language_options.keys()))
+language_code = language_options[language_choice]
+
 # TTS Processing
 if text:
-    tts = gTTS(text)
+    tts = gTTS(text=text, lang=language_code, slow=False)
     tts.save("output.mp3")
 
     # Play Audio
@@ -36,3 +54,4 @@ st.markdown("""
 ---
 Made with ❤️ using [gTTS](https://pypi.org/project/gTTS/) and [Streamlit](https://streamlit.io/)
 """)
+

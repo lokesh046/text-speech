@@ -22,7 +22,8 @@ st.subheader("Converting text to speech")
 
 text = st.text_input("enter your text here...", value="")
 
-pipe = pipeline("text-to-speech", model="espnet/kan-bayashi_ljspeech_vits")
+pipe = pipeline("text-to-speech", model="espnet/kan-bayashi_ljspeech_vits", use_auth_token="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")
+
 
 
 print(pipe)

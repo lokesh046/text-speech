@@ -3,8 +3,8 @@
 # * Deploy it using streamlit
 
 #Installation
-#pip install transformers
-#pip install streamlit
+pip install transformers
+pip install streamlit
 import transformers
 from transformers import pipeline
 import streamlit as st

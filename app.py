@@ -17,12 +17,12 @@ st.subheader("🔊 Converting Text to Speech")
 text = st.text_input("Enter your text here...", value="Hello! Welcome to your generative AI tool.")
 
 # Hugging Face auth token via environment variable (safe practice)
-hf_token = os.getenv('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')
 
 if text:
     try:
         # Load text-to-speech pipeline
-        pipe = pipeline("text-to-speech", model="espnet/kan-bayashi_ljspeech_vits", use_auth_token=hf_token)
+        pipe = pipeline("text-to-speech", model="espnet_fastspeech2_en", framework="pt")
+
         output = pipe(text)
         st.audio(output["audio"], sample_rate=output["sampling_rate"])
     except Exception as e:

@@ -8,7 +8,7 @@
 import transformers
 from transformers import pipeline
 import streamlit as st
-from transformers import pipeline
+
 
 st.title("Building Generative AI tool")
 
@@ -22,10 +22,7 @@ st.subheader("Converting text to speech")
 
 text = st.text_input("enter your text here...", value="")
 
-pipe = pipeline("text-to-speech", model="espnet/kan-bayashi_ljspeech_vits", use_auth_token="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")
-
-
-
+pipe = pipeline("text-to-speech", model="suno/bark-small", device="cuda")
 print(pipe)
 output = pipe(text)
 st.audio(output["audio"], sample_rate=output["sampling_rate"])
